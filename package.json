@@ -1,0 +1,23 @@
+{
+  "name": "playwrightautomation",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "tests:chrome": "playwright test --config=playwright.config.ts --project=Chromium",
+    "tests:firefox": "playwright test --config=playwright.config.ts --project=Firefox",
+    "tests:webkit": "playwright test --config=playwright.config.ts --project=Webkit",
+    "tests:e2e": "playwright test --config=e2e.config.ts --project=Chromium"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "@extra/recaptcha": "^4.2.1-next.587",
+    "@playwright/test": "^1.27.1",
+    "crypto-js": "^4.1.1",
+    "playwright": "^1.27.1",
+    "playwright-extra": "^4.3.5",
+    "prettier": "^2.7.1",
+    "user-agents": "^1.0.1194"
+  }
+}
