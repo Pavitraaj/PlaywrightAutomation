@@ -7,12 +7,10 @@ const config:PlaywrightTestConfig={
     use:{
         headless: false,
         viewport: {width: 1280, height: 720},
-        actionTimeout:15000, //15 seconds //This is for Playwright commands (click(), type(), fill())
-        ignoreHTTPSErrors: true, //This is to handle SSL certifications
-        video: 'off', //To record videos of test execution
-        //video: 'retain-on-failure',
-        screenshot: 'off' //To take screenshots
-        //screenshot: 'only-on-failure',
+        actionTimeout:15000, 
+        ignoreHTTPSErrors: true, 
+        video: 'off', 
+        screenshot: 'off' 
     },
     projects:[
         {
