@@ -3,7 +3,7 @@ import { HomePage } from '../../PageObjects/HomePage'
 import { LoginPage } from '../../PageObjects/LoginPage'
 let homepage: HomePage
 let loginpage: LoginPage
-
+// this test suite is for Shedule Page
 test.describe('Shedule Page', () => {
     test('Add a shift', async ({ page }) => {
     loginpage=new LoginPage(page)
