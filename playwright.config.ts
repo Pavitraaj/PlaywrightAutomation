@@ -1,38 +1,39 @@
-import { PlaywrightTestConfig } from "@playwright/test";
+import { PlaywrightTestConfig, devices } from "@playwright/test";
 
-const config:PlaywrightTestConfig={
-    timeout:60000,
-    retries:0,
-    testDir: 'tests/e2e',
-    use:{
-        headless: false,
-        viewport: {width: 1280, height: 720},
-        actionTimeout:15000, //15 seconds //This is for Playwright commands (click(), type(), fill())
-        ignoreHTTPSErrors: true, //This is to handle SSL certifications
-        //video: 'off', //To record videos of test execution
-        video: 'retain-on-failure',
-        //screenshot: 'off' //To take screenshots
-        screenshot: 'only-on-failure',
-    },
-    projects:[
+const config: PlaywrightTestConfig = {
+  timeout: 60000,
+  retries: process.env.CI ? 2 : 0, // retry twice in CI
+  testDir: 'tests/e2e',
+  workers: process.env.CI ? 2 : undefined, // limit workers in CI
+  use: {
+    headless: process.env.CI ? true : false, // headless in CI
+    viewport: { width: 1280, height: 720 },
+    actionTimeout: 15000,
+    ignoreHTTPSErrors: true,
+    video: 'retain-on-failure',
+    screenshot: 'only-on-failure',
+  },
+  projects: process.env.CI
+    ? [
         {
-            name: 'Chromium',
-            use: {
-                browserName: 'chromium'
-            }
-        },//Chromium
+          name: 'Chromium',
+          use: { browserName: 'chromium' },
+        },
+      ]
+    : [
         {
-            name: 'Firefox',
-            use: {
-                browserName: 'firefox'
-            }
-        },//Firefox
+          name: 'Chromium',
+          use: { browserName: 'chromium' },
+        },
         {
-            name: 'Webkit',
-            use: {
-                browserName: 'webkit'
-            }
-        },//Firefox
-    ]
-}
-export default config
+          name: 'Firefox',
+          use: { browserName: 'firefox' },
+        },
+        {
+          name: 'Webkit',
+          use: { browserName: 'webkit' },
+        },
+      ],
+};
+
+export default config;
